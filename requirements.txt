@@ -1,0 +1,4 @@
+fastapi
+anthropic
+pydantic
+python-dotenv
