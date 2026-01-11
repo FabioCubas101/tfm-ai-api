@@ -3,7 +3,7 @@ FastAPI application for Canary Islands tourism assistant with Claude AI integrat
 """
 from fastapi import FastAPI, Request, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
 import anthropic
 
@@ -15,26 +15,28 @@ from src.prompts import SYSTEM_PROMPT, REJECTION_PROMPT, get_data_context_prompt
 # Pydantic Models
 class ChatRequest(BaseModel):
     """Request model for chat endpoint."""
-    message: str = Field(..., description="User message", min_length=1, max_length=1000)
-    
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "message": "¿Cuántos turistas visitaron Tenerife en enero de 2025?"
             }
         }
+    )
+    
+    message: str = Field(..., description="User message", min_length=1, max_length=1000)
 
 
 class ChatResponse(BaseModel):
     """Chat response model."""
-    response: str = Field(..., description="Assistant response")
-    
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "response": "Según los datos disponibles, en enero de 2025..."
             }
         }
+    )
+    
+    response: str = Field(..., description="Assistant response")
 
 
 class ErrorResponse(BaseModel):

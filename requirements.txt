@@ -2,3 +2,4 @@ fastapi
 anthropic
 pydantic
 python-dotenv
+uvicorn[standard]
