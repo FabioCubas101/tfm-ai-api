@@ -2,24 +2,20 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (add packages if needed)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy requirements and app
+COPY . .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY main.py .
-COPY src/ ./src/
-COPY data/ ./data/
-
-# Expose port
+# Expose the port
 EXPOSE 8000
 
-# Run the application
-CMD ["python", "main.py"]
+# Run with uvicorn so it's accessible from host Nginx
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

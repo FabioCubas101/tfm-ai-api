@@ -53,3 +53,8 @@ README.md
 # Tests
 tests/
 *.pytest_cache/
+
+#Extras (to minimize COPY)
+Dockerfile
+docker-compose.yml
+*.log
