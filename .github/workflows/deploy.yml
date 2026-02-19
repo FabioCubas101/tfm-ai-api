@@ -28,15 +28,15 @@ jobs:
               cd /home/ubuntu/practica_docker/tfm-ai-api-main &&
               git pull origin main &&
               cd .. &&
-              docker compose down &&
-              docker compose up -d --build
+              docker-compose down &&
+              docker-compose up -d --build
             "
           else
             ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
               cd /home/ubuntu/practica_docker_dev/tfm-ai-api-main &&
               git pull origin dev &&
               cd .. &&
-              docker compose down &&
-              docker compose up -d --build
+              docker-compose down &&
+              docker-compose up -d --build
             "
           fi
