@@ -148,7 +148,7 @@ async def root():
 async def health_check():
     """Health check endpoint."""
     return {
-        "status": "healthy",
+        "status": "hola mundo",
         "rag_system": "initialized" if rag_system else "error",
         "data_records": len(rag_system.data) if rag_system else 0
     }
