@@ -15,9 +15,11 @@ spec:
       labels:
         app: tfm-ai-api
     spec:
+      imagePullSecrets:
+      - name: ghcr-pull-secret
       containers:
       - name: tfm-ai-api
-        image: barckcode/tfm-ai-api:v1.0.2
+        image: ghcr.io/fabiocubas101/tfm-ai-api:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8000

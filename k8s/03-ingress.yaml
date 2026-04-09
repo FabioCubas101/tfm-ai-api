@@ -11,10 +11,10 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - tfm-ai-api.helmcode.com
+    - fabio-api.helmcode.com
     secretName: tfm-ai-api-tls
   rules:
-  - host: tfm-ai-api.helmcode.com
+  - host: fabio-api.helmcode.com
     http:
       paths:
       - path: /
