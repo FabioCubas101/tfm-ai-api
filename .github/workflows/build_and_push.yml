@@ -45,7 +45,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-push
+    needs: build
 
     steps:
       - name: Ejecutar despliegue en AWS vía SSH
@@ -60,5 +60,5 @@ jobs:
               --from-literal=MASTER_API_KEY="${{ secrets.MASTER_API_KEY }}" \
               -n tfm-ai-api \
               --dry-run=client -o yaml | kubectl apply -f -
-              
+
             kubectl rollout restart deployment tfm-ai-api -n tfm-ai-api
