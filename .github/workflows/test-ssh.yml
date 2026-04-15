@@ -1,0 +1,23 @@
+name: Test SSH Connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probar conexión a AWS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST_PROD }}
+          username: ubuntu
+          key: ${{ secrets.SERVER_SSH_KEY_PROD }}
+          script: |
+            echo "¡Conexión SSH establecida con éxito!"
+            echo "Usuario actual:"
+            whoami
+            echo "Estado del servidor:"
+            uptime
+            echo "Comprobando acceso a Kubernetes (solo lectura):"
+            kubectl get nodes
