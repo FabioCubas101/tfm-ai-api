@@ -18,36 +18,4 @@ patches:
       
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: fabio.helmcode.com 
-  
-  - target:
-      kind: Ingress
-      name: frontend-ingress
-    patch: |-
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        name: frontend-ingress
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
-
-  - target:
-      kind: Deployment
-      name: tfm-ai
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: tfm-ai
-      spec:
-        template:
-          spec:
-            containers:
-              - name: tfm-ai
-                env:
-                  - name: VITE_API_KEY 
-                    valueFrom:
-                      secretKeyRef:
-                        name: tfm-ai-api-secrets 
-                        key: MASTER_API_KEY
+        value: fabio.helmcode.com
