@@ -4,10 +4,9 @@ metadata:
   name: tfm-ai-api
   namespace: tfm-ai-api
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #traefik.ingress.kubernetes.io/router.tls: "true"
-    #cert-manager.io/cluster-issuer: helmcode
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
     traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: tfm-ai-api-https-redirect@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:
