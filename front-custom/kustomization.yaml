@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/03-ingress.yaml
-  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/02-service.yaml
-  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/01-deployment.yaml
-  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/00-secret.example.yaml
+  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/middleware.yaml
+  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/service.yaml
+  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/deployment.yaml
+  - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/ingressroute.yaml
 
 patches:
   - target:
