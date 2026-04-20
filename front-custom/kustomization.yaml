@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namesapce: tfm-ai
+namespace: tfm-ai
 
 resources:
   - https://raw.githubusercontent.com/bruno-Practicas/tfm-ai/refs/heads/main/k8s/middleware.yaml
