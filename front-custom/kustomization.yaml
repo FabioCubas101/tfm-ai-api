@@ -9,13 +9,17 @@ resources:
 
 patches:
   - target:
-      kind: Ingress
-      name: frontend-ingress
+      kind: IngressRoute
+      name: tfm-ai-http
     patch: |-
       - op: replace
-        path: /spec/rules/0/host
-        value: fabio.helmcode.com 
+        path: /spec/routes/0/match
+        value: Host(`fabio.helmcode.com`)
       
+  - target:
+      kind: IngressRoute
+      name: tfm-ai-https
+    patch: |-
       - op: replace
-        path: /spec/tls/0/hosts/0
-        value: fabio.helmcode.com
+        path: /spec/routes/0/match
+        value: Host(`fabio.helmcode.com`)
