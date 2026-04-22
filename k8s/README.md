@@ -1,3 +1,7 @@
+# Nota
+
+Este archivo representa una versión anterior de esta api, los comportamientos auqí descritos puede que yo no sean correctos. 
+
 # Kubernetes Deployment
 
 Este directorio contiene los manifiestos de Kubernetes para desplegar la API en producción.
