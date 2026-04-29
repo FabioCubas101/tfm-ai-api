@@ -1,0 +1,34 @@
+# Configuración de réplicas
+replicaCount: 1
+
+# Configuración de la imagen Docker
+image:
+  repository: ghcr.io/fabiocubas101/tfm-ai-api
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: "ghcr-pull-secret"
+
+# Configuración del Servicio de Kubernetes
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+# Configuración del dominio y Traefik
+ingress:
+  host: "fabio-api.helmcode.com"
+  certResolver: "letsencrypt"
+
+# Configuración de los Secretos que el Deployment espera leer
+secrets:
+  name: "tfm-ai-api-secrets"
+
+# Configuración de Recursos
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
