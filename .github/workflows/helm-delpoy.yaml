@@ -39,7 +39,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ steps.vars.outputs.sha_short }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
   update-gitops:
@@ -60,14 +60,14 @@ jobs:
 
       - name: Actualizar tag en values.yaml
         run: |
-          sed -i 's/tag: ".*"/tag: "${{ steps.vars.outputs.sha_short }}"/g' helm-chart/values.yaml
+          sed -i 's/tag: ".*"/tag: "sha-${{ steps.vars.outputs.sha_short }}"/g' helm-chart/values.yaml
 
       - name: Commit y Push de la nueva versión a Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add helm-chart/values.yaml
-          git commit -m "chore: actualizar imagen a la versión ${{ steps.vars.outputs.sha_short }} [skip ci]"
+          git commit -m "chore: actualizar imagen a la versión sha-${{ steps.vars.outputs.sha_short }} [skip ci]"
           git push
 
   deploy-secrets:
