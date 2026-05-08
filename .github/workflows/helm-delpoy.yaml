@@ -106,8 +106,12 @@ jobs:
           echo "Sincronizando la aplicación en ArgoCD..."
           argocd app sync ${{ env.ARGOCD_APP_NAME }} \
             --grpc-web \
+            --server $ARGOCD_SERVER \
+            --auth-token $ARGOCD_TOKEN \
           
           echo "Esperando a que la aplicación esté Healthy..."
           argocd app wait ${{ env.ARGOCD_APP_NAME }} \
             --grpc-web \
+            --server $ARGOCD_SERVER \
+            --auth-token $ARGOCD_TOKEN \
             --health
